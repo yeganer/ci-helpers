@@ -4,8 +4,8 @@
 # http://conda.pydata.org/docs/travis.html#the-travis-yml-file
 echo ls -la $HOME/miniconda
 ls -la $HOME/miniconda
-if [ ! -d "$HOME/miniconda" ]; then
-  # Control will enter here if $HOME/miniconda doesn't exist.
+if [ ! "$(ls -A $HOME/miniconda)" ]; then
+  # Control will enter here if $HOME/miniconda is empty.
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
     bash miniconda.sh -b -p $HOME/miniconda
 fi
@@ -13,7 +13,7 @@ fi
 
 export PATH="$HOME/miniconda/bin:$PATH"
 which conda
-hash-r
+hash -r
 which conda
 
 
