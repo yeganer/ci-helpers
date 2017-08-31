@@ -2,8 +2,12 @@
 
 # Install conda
 # http://conda.pydata.org/docs/travis.html#the-travis-yml-file
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-bash miniconda.sh -b -p $HOME/miniconda
+if [ ! -d "$HOME/miniconda" ]; then
+  # Control will enter here if $HOME/miniconda doesn't exist.
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    bash miniconda.sh -b -p $HOME/miniconda
+fi
+
 export PATH="$HOME/miniconda/bin:$PATH"
 
 # Install common Python dependencies
